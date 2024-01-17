@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+// template for text styles
 class AppTextStyle {
+  AppTextStyle._();
+
   static TextStyle regular(Color color, double size) =>
       style(color, size, FontWeight.w400);
 

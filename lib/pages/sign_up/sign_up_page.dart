@@ -1,9 +1,11 @@
-import 'package:boiler_plate_firebase/bloc/auth_bloc/auth_bloc.dart';
-import 'package:boiler_plate_firebase/core/widgets/textfield_widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../blocs/auth_bloc/bloc/auth_bloc.dart';
+import '../../utils/text_styles.dart';
+import '../../widgets/textfield_widget.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -73,12 +75,9 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Sign Up",
-                        style: TextStyle(
-                          fontSize: 38,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyle.bold(Colors.black, 38),
                       ),
                       const SizedBox(
                         height: 18,

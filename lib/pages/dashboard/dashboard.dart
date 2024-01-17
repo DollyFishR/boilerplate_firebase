@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../bloc/auth_bloc/auth_bloc.dart';
+import '../../blocs/auth_bloc/bloc/auth_bloc.dart';
+import '../../utils/text_styles.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -28,9 +29,9 @@ class Dashboard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Hello',
-                style: TextStyle(fontSize: 24),
+                style: AppTextStyle.regular(Colors.black, 24),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),

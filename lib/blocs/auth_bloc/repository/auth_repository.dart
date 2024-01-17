@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
   // TODO uncomment the line below after adding firebase to your project
   // final _firebaseAuth = FirebaseAuth.instance;
+  // TODO comment the line below after adding firebase to your project
   final _firebaseAuth = null;
 
   Future<void> signUp({required String email, required String password}) async {
@@ -61,6 +63,21 @@ class AuthRepository {
       );
 
       await _firebaseAuth.signInWithCredential(credential);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<UserCredential> signInWithFacebook() async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      return FirebaseAuth.instance.signInWithCredential(
+        facebookAuthCredential,
+      );
     } catch (e) {
       throw Exception(e.toString());
     }

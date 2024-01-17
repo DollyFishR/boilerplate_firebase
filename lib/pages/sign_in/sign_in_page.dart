@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../bloc/auth_bloc/auth_bloc.dart';
-import '../../core/widgets/textfield_widget.dart';
+import '../../blocs/auth_bloc/bloc/auth_bloc.dart';
+import '../../utils/text_styles.dart';
+import '../../widgets/textfield_widget.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -18,13 +19,6 @@ class _SignInState extends State<SignIn> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
   void _authenticateWithEmailAndPassword(context) {
     if (_formKey.currentState!.validate()) {
       // If email is valid adding new Event [SignInRequested].
@@ -34,15 +28,22 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  void _authenticateWithGoogle(context) {
+    Modular.get<AuthBloc>().add(
+      GoogleSignInRequested(),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
   }
 
-  void _authenticateWithGoogle(context) {
-    Modular.get<AuthBloc>().add(
-      GoogleSignInRequested(),
-    );
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -81,12 +82,9 @@ class _SignInState extends State<SignIn> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "Sign In",
-                        style: TextStyle(
-                          fontSize: 38,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyle.bold(Colors.black, 38),
                       ),
                       const SizedBox(
                         height: 18,
