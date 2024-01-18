@@ -37,7 +37,7 @@ flutter pub get
  You need to add Firebase to your project before use authenticate function on this project.
  [Firebase Install](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwih5p-KiOSDAxVNTmwGHS-kBjUQFnoECBEQAQ&url=https%3A%2F%2Ffirebase.google.com%2Fdocs%2Fflutter%2Fsetup&usg=AOvVaw0MJ6O0eTldsl6nhsgJiBWF&opi=89978449)
 
- After that you need to uncomment code on Todo in main.dart, auth_repository.dart, sign_in_page.dart, sign_up_page.dart, dash_board.dart.
+ After that you need to uncomment code on "TODO" in main.dart, auth_repository.dart, sign_in_page.dart, sign_up_page.dart, dash_board.dart.
  
  * main.dart
 ```
