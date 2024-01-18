@@ -82,18 +82,48 @@ class AuthRepository {
                           ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          // TODO comment the line below after adding firebase to your project
-                          Modular.to.navigate('/dashboard');
-                          // TODO uncomment the line below after adding firebase to your project
-                          // _authenticateWithGoogle(context);
-                        },
-                        icon: Image.asset(
-                          "assets/logo/google.png",
-                          height: 30,
-                          width: 30,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                // TODO comment the line below after adding firebase to your project
+                                Modular.to.navigate('/dashboard');
+                                // TODO uncomment the line below after adding firebase to your project
+                                // _authenticateWithOAuth(context, 'facebook');
+                              },
+                              icon: const Icon(
+                                Icons.facebook,
+                                color: Colors.blueAccent,
+                                size: 30,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'google');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/google.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'apple');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/apple.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                        ],
                       ),
     ...
 ```
@@ -101,7 +131,9 @@ class AuthRepository {
 * sign_up_page.dart
 ```
     ...
-                      child: ElevatedButton(
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: ElevatedButton(
                                   onPressed: () {
                                     // TODO comment the line below after adding firebase to your project
                                     Modular.to.navigate('/dashboard');
@@ -123,18 +155,48 @@ class AuthRepository {
                         child: const Text("Sign In"),
                       ),
                       const Text("Or"),
-                      IconButton(
-                        onPressed: () {
-                          // TODO comment the line below after adding firebase to your project
-                          Modular.to.navigate('/dashboard');
-                          // TODO uncomment the line below after adding firebase to your project
-                          // _authenticateWithGoogle(context);
-                        },
-                        icon: Image.asset(
-                          "assets/logo/google.png",
-                          height: 30,
-                          width: 30,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                // TODO comment the line below after adding firebase to your project
+                                Modular.to.navigate('/dashboard');
+                                // TODO uncomment the line below after adding firebase to your project
+                                // _authenticateWithOAuth(context, 'facebook');
+                              },
+                              icon: const Icon(
+                                Icons.facebook,
+                                color: Colors.blueAccent,
+                                size: 30,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'google');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/google.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'apple');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/apple.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                        ],
                       ),
     ...
 ```
