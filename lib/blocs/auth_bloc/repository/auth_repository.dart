@@ -82,4 +82,16 @@ class AuthRepository {
       throw Exception(e.toString());
     }
   }
+
+  Future<UserCredential> signInWithApple() async {
+    try {
+      final appleProvider = AppleAuthProvider();
+      UserCredential userCredential;
+      userCredential =
+          await FirebaseAuth.instance.signInWithProvider(appleProvider);
+      return userCredential;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

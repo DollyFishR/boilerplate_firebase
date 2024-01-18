@@ -35,10 +35,22 @@ class _SignUpState extends State<SignUp> {
   }
 
 //
-  void _authenticateWithGoogle(context) {
-    Modular.get<AuthBloc>().add(
-      GoogleSignInRequested(),
-    );
+  void _authenticateWithOAuth(context, String provider) {
+    AuthEvent event;
+    switch (provider) {
+      case 'google':
+        event = GoogleSignInRequested();
+        break;
+      case 'facebook':
+        event = FacebookSignInRequested();
+        break;
+      case 'apple':
+        event = AppleSignInRequested();
+        break;
+      default:
+        return;
+    }
+    Modular.get<AuthBloc>().add(event);
   }
 
   @override
@@ -142,18 +154,48 @@ class _SignUpState extends State<SignUp> {
                         child: const Text("Sign In"),
                       ),
                       const Text("Or"),
-                      IconButton(
-                        onPressed: () {
-                          // TODO comment the line below after adding firebase to your project
-                          Modular.to.navigate('/dashboard');
-                          // TODO uncomment the line below after adding firebase to your project
-                          // _authenticateWithGoogle(context);
-                        },
-                        icon: Image.asset(
-                          "assets/logo/google.png",
-                          height: 30,
-                          width: 30,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                // TODO comment the line below after adding firebase to your project
+                                Modular.to.navigate('/dashboard');
+                                // TODO uncomment the line below after adding firebase to your project
+                                // _authenticateWithOAuth(context, 'facebook');
+                              },
+                              icon: const Icon(
+                                Icons.facebook,
+                                color: Colors.blueAccent,
+                                size: 30,
+                              )),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'google');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/google.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              // TODO comment the line below after adding firebase to your project
+                              Modular.to.navigate('/dashboard');
+                              // TODO uncomment the line below after adding firebase to your project
+                              // _authenticateWithOAuth(context, 'apple');
+                            },
+                            icon: Image.asset(
+                              "assets/logo/apple.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

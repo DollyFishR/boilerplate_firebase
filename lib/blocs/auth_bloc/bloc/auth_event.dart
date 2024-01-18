@@ -25,5 +25,8 @@ class GoogleSignInRequested extends AuthEvent {}
 // When the user signing in with facebook this event is called and the [AuthRepository] is called to sign in the user
 class FacebookSignInRequested extends AuthEvent {}
 
+// When the user signing in with apple this event is called and the [AuthRepository] is called to sign in the user
+class AppleSignInRequested extends AuthEvent {}
+
 // When the user signing out this event is called and the [AuthRepository] is called to sign out the user
 class SignOutRequested extends AuthEvent {}

@@ -57,6 +57,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
 
+    on<AppleSignInRequested>((event, emit) async {
+      emit(state.copyWith(status: AuthStatus.loading));
+      try {
+        await authRepository.signInWithApple();
+        emit(state.copyWith(status: AuthStatus.authenticated));
+      } catch (e) {
+        emit(state.copyWith(status: AuthStatus.error, error: e.toString()));
+        emit(const AuthState.initial());
+      }
+    });
+
     on<SignOutRequested>((event, emit) async {
       emit(state.copyWith(status: AuthStatus.loading));
       await authRepository.signOut();
