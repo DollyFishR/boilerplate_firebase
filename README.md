@@ -4,8 +4,8 @@ A boiler plate project created in Flutter using Bloc, Modular, and Firebase.
 
 # Boilerplate Feature
 * Splash
-* Login
-* Signin
+* Sign up
+* Sign in
 * Authenticate
 * Modular (Routing)
 * Bloc (State Management)
