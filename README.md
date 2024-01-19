@@ -40,7 +40,7 @@ flutter pub get
  After that you need to uncomment code on "TODO" in main.dart, auth_repository.dart, sign_in_page.dart, sign_up_page.dart, dash_board.dart.
  
  * main.dart
-```
+```dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // TODO uncomment the line below after adding firebase to your project
@@ -52,7 +52,7 @@ void main() async {
 ```
 
  * auth_repository.dart
-```
+```dart
 class AuthRepository {
   // TODO uncomment the line below after adding firebase to your project
   // final _firebaseAuth = FirebaseAuth.instance;
@@ -64,7 +64,7 @@ class AuthRepository {
 ```
 
  * sign_in_page.dart
-```
+```dart
     ...
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.7,
@@ -129,7 +129,7 @@ class AuthRepository {
 ```
 
 * sign_up_page.dart
-```
+```dart
     ...
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.7,
@@ -202,7 +202,7 @@ class AuthRepository {
 ```
 
  * dash_board.dart
-```
+```dart
     ...
          ElevatedButton(
                         child: const Text('Sign Out'),
@@ -316,7 +316,7 @@ widgets/
 
 This is starting point of the application.
 
-```
+```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
