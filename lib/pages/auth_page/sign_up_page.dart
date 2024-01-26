@@ -6,6 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../blocs/auth_bloc/bloc/auth_bloc.dart';
 import '../../utils/text_styles.dart';
 import '../../widgets/textfield_widget.dart';
+import 'func/auth_func.dart';
+import 'widgets/oauth_widgets.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -24,33 +26,6 @@ class _SignUpState extends State<SignUp> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void _authenticateWithEmailAndPassword(context) {
-    if (_formKey.currentState!.validate()) {
-      Modular.get<AuthBloc>().add(
-        SignUpRequested(_emailController.text, _passwordController.text),
-      );
-    }
-  }
-
-//
-  void _authenticateWithOAuth(context, String provider) {
-    AuthEvent event;
-    switch (provider) {
-      case 'google':
-        event = GoogleSignInRequested();
-        break;
-      case 'facebook':
-        event = FacebookSignInRequested();
-        break;
-      case 'apple':
-        event = AppleSignInRequested();
-        break;
-      default:
-        return;
-    }
-    Modular.get<AuthBloc>().add(event);
   }
 
   @override
@@ -134,10 +109,8 @@ class _SignUpState extends State<SignUp> {
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // TODO comment the line below after adding firebase to your project
-                                    Modular.to.navigate('/dashboard');
-                                    // TODO uncomment the line below after adding firebase to your project
-                                    // _authenticateWithEmailAndPassword(context);
+                                    authenticateWithEmailAndPassword(
+                                        context, _formKey);
                                   },
                                   child: const Text('Sign Up'),
                                 ),
@@ -154,49 +127,7 @@ class _SignUpState extends State<SignUp> {
                         child: const Text("Sign In"),
                       ),
                       const Text("Or"),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                // TODO comment the line below after adding firebase to your project
-                                Modular.to.navigate('/dashboard');
-                                // TODO uncomment the line below after adding firebase to your project
-                                // _authenticateWithOAuth(context, 'facebook');
-                              },
-                              icon: const Icon(
-                                Icons.facebook,
-                                color: Colors.blueAccent,
-                                size: 30,
-                              )),
-                          IconButton(
-                            onPressed: () {
-                              // TODO comment the line below after adding firebase to your project
-                              Modular.to.navigate('/dashboard');
-                              // TODO uncomment the line below after adding firebase to your project
-                              // _authenticateWithOAuth(context, 'google');
-                            },
-                            icon: Image.asset(
-                              "assets/logo/google.png",
-                              height: 30,
-                              width: 30,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              // TODO comment the line below after adding firebase to your project
-                              Modular.to.navigate('/dashboard');
-                              // TODO uncomment the line below after adding firebase to your project
-                              // _authenticateWithOAuth(context, 'apple');
-                            },
-                            icon: Image.asset(
-                              "assets/logo/apple.png",
-                              height: 30,
-                              width: 30,
-                            ),
-                          ),
-                        ],
-                      ),
+                      oauthGroup(),
                     ],
                   ),
                 ),

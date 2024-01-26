@@ -4,9 +4,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../blocs/auth_bloc/bloc/auth_bloc.dart';
 import '../blocs/auth_bloc/repository/auth_repository.dart';
+import '../pages/auth_page/sign_in_page.dart';
+import '../pages/auth_page/sign_up_page.dart';
 import '../pages/dashboard/dashboard.dart';
-import '../pages/sign_in/sign_in_page.dart';
-import '../pages/sign_up/sign_up_page.dart';
 import '../pages/splash_screen/splash_screen.dart';
 
 class AppModule extends Module {

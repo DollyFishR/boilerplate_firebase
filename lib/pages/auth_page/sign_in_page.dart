@@ -6,6 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../blocs/auth_bloc/bloc/auth_bloc.dart';
 import '../../utils/text_styles.dart';
 import '../../widgets/textfield_widget.dart';
+import 'func/auth_func.dart';
+import 'widgets/oauth_widgets.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -15,36 +17,9 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  void _authenticateWithEmailAndPassword(context) {
-    if (_formKey.currentState!.validate()) {
-      // If email is valid adding new Event [SignInRequested].
-      Modular.get<AuthBloc>().add(
-        SignInRequested(_emailController.text, _passwordController.text),
-      );
-    }
-  }
-
-  void _authenticateWithOAuth(context, String provider) {
-    AuthEvent event;
-    switch (provider) {
-      case 'google':
-        event = GoogleSignInRequested();
-        break;
-      case 'facebook':
-        event = FacebookSignInRequested();
-        break;
-      case 'apple':
-        event = AppleSignInRequested();
-        break;
-      default:
-        return;
-    }
-    Modular.get<AuthBloc>().add(event);
-  }
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -142,10 +117,8 @@ class _SignInState extends State<SignIn> {
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // TODO comment the line below after adding firebase to your project
-                                    Modular.to.navigate('/dashboard');
-                                    // TODO uncomment the line below after adding firebase to your project
-                                    // _authenticateWithEmailAndPassword(context);
+                                    authenticateWithEmailAndPassword(
+                                        context, _formKey);
                                   },
                                   child: const Text('Sign In'),
                                 ),
@@ -154,49 +127,7 @@ class _SignInState extends State<SignIn> {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                // TODO comment the line below after adding firebase to your project
-                                Modular.to.navigate('/dashboard');
-                                // TODO uncomment the line below after adding firebase to your project
-                                // _authenticateWithOAuth(context, 'facebook');
-                              },
-                              icon: const Icon(
-                                Icons.facebook,
-                                color: Colors.blueAccent,
-                                size: 30,
-                              )),
-                          IconButton(
-                            onPressed: () {
-                              // TODO comment the line below after adding firebase to your project
-                              Modular.to.navigate('/dashboard');
-                              // TODO uncomment the line below after adding firebase to your project
-                              // _authenticateWithOAuth(context, 'google');
-                            },
-                            icon: Image.asset(
-                              "assets/logo/google.png",
-                              height: 30,
-                              width: 30,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              // TODO comment the line below after adding firebase to your project
-                              Modular.to.navigate('/dashboard');
-                              // TODO uncomment the line below after adding firebase to your project
-                              // _authenticateWithOAuth(context, 'apple');
-                            },
-                            icon: Image.asset(
-                              "assets/logo/apple.png",
-                              height: 30,
-                              width: 30,
-                            ),
-                          ),
-                        ],
-                      ),
+                      oauthGroup(),
                       const Text("Don't have an account?"),
                       OutlinedButton(
                         onPressed: () {

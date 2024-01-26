@@ -80,7 +80,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
-  image_path: "assets/icons/Splash.png"
+  image_path: "assets/icons/splash.png"
   android: true
   ios: true
 
